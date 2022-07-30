@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"github.com/gorilla/handlers"
 	"log"
 	"net/http"
 	"time"
@@ -33,5 +34,5 @@ func main() {
 
 	// Create and listen for the HTTP server
 	router := h.NewRouter(api)
-	log.Fatal(http.ListenAndServe(*address, router))
+	log.Fatal(http.ListenAndServe(*address, handlers.CORS()(router)))
 }
